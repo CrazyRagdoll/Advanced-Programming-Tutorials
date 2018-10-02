@@ -19,7 +19,17 @@ double quotient(double x, int y); //task 2
 
 void calc(double x, double y, char op); //task 3
 
+//Rando recursion
+void inside(int x, int y) {
+	double z = x + y;
+	cout << z << endl;	
+	if (z > 4352) { return; }
+	inside(z, y);
+}
+
 int main() {
+
+	inside(1, 1);
 
 	int a, b, c, exit;
 
@@ -40,7 +50,7 @@ int main() {
 	double quot = quotient(5, 3);
 
 	//Task 3 output
-	calc(2, 3, '-');
+	calc(2, 3, '+');
 
 	cout << "enter another number to exit" << "\n";
 
@@ -68,10 +78,10 @@ double quotient(double x, int y) {
 //Task 3
 void calc(double x, double y, char op) {
 	switch (op) {
-	case '+': cout << "Product of " << x << " + " << y << " = " << x + y << endl; break;
-	case '-': cout << "Product of " << x << " - " << y << " = " << x - y << endl; break;
-	case '*': cout << "Product of " << x << " * " << y << " = " << x * y << endl; break;
-	case '/': cout << "Product of " << x << " / " << y << " = " << x / y << endl; break;
+		case '+': cout << "Product of " << x << " + " << y << " = " << x + y << endl; break;
+		case '-': cout << "Product of " << x << " - " << y << " = " << x - y << endl; break;
+		case '*': cout << "Product of " << x << " * " << y << " = " << x * y << endl; break;
+		case '/': cout << "Product of " << x << " / " << y << " = " << x / y << endl; break;
 	default: cout << "Invalid operator" << endl; break;
 	}
 }
