@@ -33,7 +33,7 @@ void gimiNeg() {
 
 	int x = 0;
 	
-	while (x >= 0) {
+	while (isPos(x)) {
 		cout << "Enter a number: ";
 		cin >> x;
 	}
@@ -42,16 +42,16 @@ void gimiNeg() {
 }
 
 //Task 3
-int recursionFac(int x, int facSum) {
+int recursionFac(int x) {
 
-	facSum *= x--;
-
-	if (x > 0) 
-		facSum = recursionFac(x, facSum);
-
-	return facSum;
+	if (x > 0) {
+		return x * recursionFac(x - 1);
+	}
+	return 1;
 
 }
+//Advantages - more intuitive, lets the programmer visualise the problem better and make it more understandable
+//Disadvantages - usually much slower due to all the functions calls being stored on the stack to allow them to return back to the caller function
 
 int main() {
 
@@ -68,8 +68,7 @@ int main() {
 	gimiNeg();
 
 	//Task 3
-	int facSum = 1;
-	int poop = recursionFac(5, facSum);
+	int facSum = recursionFac(5);
 
 	int total = 0;
 
