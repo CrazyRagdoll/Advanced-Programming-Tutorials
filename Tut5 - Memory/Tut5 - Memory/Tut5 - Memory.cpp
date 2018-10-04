@@ -93,21 +93,41 @@ int main() {
 
 using namespace std;
 
+//Task 5
+struct node {
+	int value;
+	struct node * left;
+	struct node * right;
+};
+
+struct node * root = NULL;
+
+// implement the functions described by these headers
+void insert_integer(struct node ** tree, int value);
+void print_tree(struct node * tree);
+void terminate_tree(struct node * tree);
+
 int main () {
 
 	//Task 3
 	char stackChar = 'A';
 	string* heapString = new string;
+	delete heapString;
 
 	//Task 4
 	int* heapArray = new int[10];
 	delete[] heapArray;
 
 	//Task 5 
+	insert_integer(&root, 4);
+	insert_integer(&root, 6);
 
-	//God help me
+	print_tree(root);
 
-	int a;
+	terminate_tree(root);
+
+
+	/*int a;
 
 	int* b;
 
@@ -124,7 +144,10 @@ int main () {
 	cout << "The 'heap' memory pointed to by b contains " << *b << "\n";
 
 	delete b;
-	b = NULL;
+	b = NULL; */
+
+	int close;
+	cin >> close;
 
 	return 0;
 }
@@ -139,3 +162,39 @@ int main () {
 	Memory that has been assigned on the heap and is not cleaned up cannot be reused by the program and thus create a memory leak, the program may eventually exhaust the programs availble 
 	memory and cause a failure.
 */
+
+//Task 5
+void insert_integer(struct node ** tree, int value) {
+	if ((*tree) == NULL) {
+		node * child = new node;
+		child->value = value;
+		child->left	 = NULL; child->right = NULL;
+		(*tree) = child;
+	} else if (value <= (*tree)->value)
+	{
+		insert_integer(&(*tree)->left, value);
+	} else {
+		insert_integer(&(*tree)->right, value);
+	}
+}
+
+void print_tree(struct node * tree) {
+	if (tree->left != NULL) {
+		print_tree(tree->left);
+	}
+	cout << tree->value << " ";
+	if (tree->right != NULL) {
+		print_tree(tree->right);
+	}
+}
+
+void terminate_tree(struct node * tree) {
+	if (tree->left != NULL) {
+		terminate_tree(tree->left);
+	}
+	if (tree->right != NULL) {
+		terminate_tree(tree->right);
+	}
+	delete tree;
+
+}
