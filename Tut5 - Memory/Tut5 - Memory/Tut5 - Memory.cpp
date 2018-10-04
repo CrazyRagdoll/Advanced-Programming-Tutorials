@@ -165,20 +165,24 @@ int main () {
 
 //Task 5
 void insert_integer(struct node ** tree, int value) {
+	//If the current node is empty create a new node and add it to the tree
 	if ((*tree) == NULL) {
 		node * child = new node;
 		child->value = value;
 		child->left	 = NULL; child->right = NULL;
 		(*tree) = child;
-	} else if (value <= (*tree)->value)
-	{
+	//If the current node has a value compare the new value against it to decide where to put the next node, left or right
+	} else if (value <= (*tree)->value)	
+	{	
 		insert_integer(&(*tree)->left, value);
-	} else {
+	} else 
+	{	
 		insert_integer(&(*tree)->right, value);
 	}
 }
 
 void print_tree(struct node * tree) {
+	//Keep checking left until there are no more nodes on the left then print the current node and check right again.
 	if (tree->left != NULL) {
 		print_tree(tree->left);
 	}
@@ -189,6 +193,7 @@ void print_tree(struct node * tree) {
 }
 
 void terminate_tree(struct node * tree) {
+	//Parse through the whole tree deleteing everything
 	if (tree->left != NULL) {
 		terminate_tree(tree->left);
 	}
