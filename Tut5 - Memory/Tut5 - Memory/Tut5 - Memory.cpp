@@ -15,6 +15,7 @@
 // ------------
 // Memory Allocation
 
+/*
 #include <iostream>
 
 using namespace std;
@@ -85,38 +86,56 @@ int main() {
 	// always remember to free memory allocated with 'new' once you are finished with it,
 	// by calling 'delete' on the pointer which points to it! 
 	return 0;
-}
-
-/* Program without comments:
+}*/
 
 #include <iostream>
+#include <string>
 
 using namespace std;
 
 int main () {
 
-int a;
+	//Task 3
+	char stackChar = 'A';
+	string* heapString = new string;
 
-int* b;
+	//Task 4
+	int* heapArray = new int[10];
+	delete[] heapArray;
 
-a = 100;
+	//Task 5 
 
-b = new int;
+	//God help me
 
-cout << "The pointer b points to the memory address " << b << " located on the heap\n";
-cout << "The value in memory location b is " << *b << "\n";
+	int a;
 
-*b = a;
+	int* b;
 
-cout << "The value of stack variable a is " << a << "\n";
-cout << "The 'heap' memory pointed to by b contains " << *b << "\n";
+	a = 100;
 
-delete b;
-b = NULL;
+	b = new int;
 
-return 0;
+	cout << "The pointer b points to the memory address " << b << " located on the heap\n";
+	cout << "The value in memory location b is " << *b << "\n";
+
+	*b = a;
+
+	cout << "The value of stack variable a is " << a << "\n";
+	cout << "The 'heap' memory pointed to by b contains " << *b << "\n";
+
+	delete b;
+	b = NULL;
+
+	return 0;
 }
 
+/*	Task 1
+	Stack Overflow occurs when a program reachs the limits of the stack memory and attempts to add more data to the stack causing it to "overflow". This is common within recursive methods
+	as they call themselves storing each itteration on the stack. If the recursive fucntion does not have a (early) break point it may continue infinitly and quickly fill the stack.
 */
 
-
+/*	Task 2
+	Memory leaks are most commonly associated with pointers that have been assigned on the heap and have not been cleaned up by the; garbage collector (Java) or the programmer (c++).
+	Memory that has been assigned on the heap and is not cleaned up cannot be reused by the program and thus create a memory leak, the program may eventually exhaust the programs availble 
+	memory and cause a failure.
+*/
