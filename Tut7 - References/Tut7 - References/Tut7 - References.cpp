@@ -95,8 +95,8 @@ void mergSortArr(int *arr, int arrSize) {
 		}
 
 		//clean up
-		delete left;
-		delete right;
+		delete[] left;
+		delete[] right;
 	}
 }
 
