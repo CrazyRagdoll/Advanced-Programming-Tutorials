@@ -46,7 +46,8 @@ void sortArr(int *arr) {
 	}
 }
 
-int numz[8] = { 5, 4, 9, 2, 10, 2, 1, 3 };
+const int arrSize = 7;
+int numz[arrSize] = { 5, 4, 100, 1, 2, 20, 6 };
 
 //Merge Sort
 void mergSortArr(int *arr, int arrSize) {
@@ -60,11 +61,11 @@ void mergSortArr(int *arr, int arrSize) {
 
 		//Populate the new arrays
 		for (int i = 0; i < arrSize; i++) {
-			if (i < rightSize) {
+			if (i < leftSize) {
 				left[i] = arr[i];
 			}
 			else {
-				right[i - rightSize] = arr[i];
+				right[i - leftSize] = arr[i];
 			}
 		}
 
@@ -85,7 +86,7 @@ void mergSortArr(int *arr, int arrSize) {
 			else if (b == rightSize) {
 				arr[i] = left[a]++;
 			}
-			else if (left[a] < right[b]) {
+			else if (left[a] <= right[b]) {
 				arr[i] = left[a++];
 			} 
 			else if (left[a] > right[b]) {
@@ -93,6 +94,9 @@ void mergSortArr(int *arr, int arrSize) {
 			}
 		}
 
+		//clean up
+		delete left;
+		delete right;
 	}
 }
 
@@ -121,12 +125,12 @@ int main() {
 		cout << nums[i] << " ";	}
 
 	//Task 5 with merge sort
-	//mergSortArr(numz, 8);
+	mergSortArr(numz, arrSize);
 
-	//cout << "\nMerg Sort Shizz: ";
-	//for (int i = 0; i < 8; i++) {
-	//	cout << numz[i] << " ";
-	//}
+	cout << "\nMerg Sort Shizz: ";
+	for (int i = 0; i < arrSize; i++) {
+		cout << numz[i] << " ";
+	}
 
 	int a, b;
 
