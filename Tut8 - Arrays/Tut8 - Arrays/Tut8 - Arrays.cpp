@@ -57,9 +57,7 @@ int main(void) {
 	//Task 2
 	//first[0] = myName[0]; first[1] = myName[1]; first[2] = myName[2]; first[3] = myName[3]; first[4] = myName[4]; first[5] = myName[5];
 	//first[7] = myName[7]; first[8] = myName[8]; first[9] = myName[9]; first[10] = myName[10]; first[11] = myName[11];
-
 	addName();
-
 	printName();
 
 	const int CONST_VALUE = 3;
