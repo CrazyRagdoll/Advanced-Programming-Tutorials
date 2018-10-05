@@ -17,7 +17,51 @@ float calc_avg(const int* arr, const int val) {
 
 float calc_avg(const int* arr, const int val);
 
+//Task 1
+char myName[] = { 'S', 'a', 'm', 'u', 'e', 'l', ' ', 'B', 'o', 'w', 'e', 'n' };
+
+void printName() {
+	for (char& e : myName) {
+		cout << e;
+	}
+	cout << endl;
+}
+
+//Task 2
+char* first = new char[6];
+char* last = new char[5];
+
+void addName() {
+	int count = 0;
+	bool firstName = true;
+	for (int i = 0; i < 12; i++) {
+		if (myName[i] == ' ') {
+			firstName = false;
+			count++; break;
+		}
+		if (firstName) {
+			first[i] = myName[i];
+		}
+		else {
+			last[i - count] = myName[i];
+		}
+		count++;
+	}
+}
+
 int main(void) {
+	
+	//Task 1
+	printName();
+
+	//Task 2
+	//first[0] = myName[0]; first[1] = myName[1]; first[2] = myName[2]; first[3] = myName[3]; first[4] = myName[4]; first[5] = myName[5];
+	//first[7] = myName[7]; first[8] = myName[8]; first[9] = myName[9]; first[10] = myName[10]; first[11] = myName[11];
+
+	addName();
+
+	printName();
+
 	const int CONST_VALUE = 3;
 	float ave;
 
