@@ -1,8 +1,10 @@
 // Tut8 - Arrays.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
+//#include "stdafx.h"
+#include "pch.h"
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -18,6 +20,7 @@ float calc_avg(const int* arr, const int val) {
 float calc_avg(const int* arr, const int val);
 
 //Task 1
+int nameLen = 12;
 char myName[] = { 'S', 'a', 'm', 'u', 'e', 'l', ' ', 'B', 'o', 'w', 'e', 'n' };
 
 void printName() {
@@ -49,6 +52,49 @@ void addName() {
 	}
 }
 
+//Task 3
+bool ocean[5][5];
+int guesses = 0, badGuesses = 0;
+
+//A function to handle the player's input and guess count
+void inputGuess() {
+	bool inBounds = false;
+	string guess;
+	int x, y;
+	cout << "Guess which tile the ship is on (!!in format x,y!!): ";
+	while (!inBounds) {
+		cin >> guess;
+		x = guess[0]; y = guess[2];
+		if ((0 <= x < 5) && (0 <= y < 5)) { inBounds = true; }
+		else {
+			cout << "Out of bounds! Guess again (x,y): ";
+		}
+	}
+	if (!processGuess(x, y)) { badGuesses++; };
+}
+
+//Process the player's guess
+bool processGuess(int xCoord, int yCoord) {
+
+	return false;
+}
+
+
+//Some function to allow the player to enter their ship location
+void enterShipLocation() {
+	//Hard coded ship for now
+	ocean[3][1] = true;
+	ocean[3][2] = true;
+	ocean[3][3] = true;
+	/*Ocean layout, ship is marked with X. 3 'tiles' in size for now
+		O O O O O
+		O O O X O
+		O O O X O
+		O O O X O
+		O O O O O
+	*/
+}
+
 int main(void) {
 	
 	//Task 1
@@ -59,6 +105,17 @@ int main(void) {
 	//first[7] = myName[7]; first[8] = myName[8]; first[9] = myName[9]; first[10] = myName[10]; first[11] = myName[11];
 	addName();
 	printName();
+
+	//Task 3
+	enterShipLocation();
+
+	inputGuess();
+
+
+
+
+
+
 
 	const int CONST_VALUE = 3;
 	float ave;
