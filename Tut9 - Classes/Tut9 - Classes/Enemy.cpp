@@ -2,9 +2,9 @@
 #include "Enemy.h"
 
 //task 1
-Enemy::Enemy(int hps) :
-	hit_points(hps),
-	score(new int(0)) {
+Enemy::Enemy(int hps, int score) : //task 1
+	hit_points(hps), 
+	score(new int (score)) {
 }
 
 Enemy::~Enemy() {

@@ -40,7 +40,14 @@ void BST::print_tree(node * tree) {
 }
 
 void BST::display_tree(node * tree) {
-
+	int spaces = 0;
+	if (tree->left != NULL) {
+		display_tree(tree->left);
+	}
+	if (tree->right != NULL) {
+		display_tree(tree->right);
+	} 
+	cout << tree->value;
 }
 
 bool BST::find_value(node * tree, int val) {

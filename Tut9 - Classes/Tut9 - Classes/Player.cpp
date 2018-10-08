@@ -2,9 +2,9 @@
 #include "Player.h"
 
 
-Player::Player(int hps) :
+Player::Player(int hps, int score) :
 	hit_points(hps),
-	score(new int(0)),
+	score(new int(score)),
 	name(new string("")){
 }
 

@@ -2,7 +2,7 @@
 
 class Enemy {
 public:
-	Enemy(int hps);
+	Enemy(int hps, int score); //task 1
 	~Enemy();
 	int get_hit_points() const;
 	int get_score() const;

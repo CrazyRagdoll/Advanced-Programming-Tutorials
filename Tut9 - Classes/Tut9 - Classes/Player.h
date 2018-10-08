@@ -6,7 +6,7 @@ using namespace std;
 class Player
 {
 public:
-	Player(int hps);
+	Player(int hps, int score);
 	~Player();
 	int get_hit_points() const;
 	int get_score() const;
