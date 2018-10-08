@@ -1,8 +1,7 @@
 // Tut8 - Arrays.cpp : Defines the entry point for the console application.
 //
 
-//#include "stdafx.h"
-#include "pch.h"
+#include "stdafx.h"
 #include <iostream>
 #include <string>
 
@@ -30,6 +29,13 @@ void printName() {
 	cout << endl;
 }
 
+void printName(char name[], int len) {
+	for (int i = 0; i < len; i++) {
+		cout << name[i];
+	}
+	cout << endl;
+}
+
 //Task 2
 char* first = new char[6];
 char* last = new char[5];
@@ -40,60 +46,34 @@ void addName() {
 	for (int i = 0; i < 12; i++) {
 		if (myName[i] == ' ') {
 			firstName = false;
-			count++; break;
-		}
-		if (firstName) {
+			count++;
+		} else if (firstName) {
 			first[i] = myName[i];
-		}
-		else {
+			count++;
+		} else {
 			last[i - count] = myName[i];
 		}
-		count++;
 	}
 }
 
 //Task 3
-bool ocean[5][5];
-int guesses = 0, badGuesses = 0;
+bool grid[5][5], shipAlive = true;
+int guesses = 0, misses = 0;
 
 //A function to handle the player's input and guess count
-void inputGuess() {
-	bool inBounds = false;
-	string guess;
-	int x, y;
-	cout << "Guess which tile the ship is on (!!in format x,y!!): ";
-	while (!inBounds) {
-		cin >> guess;
-		x = guess[0]; y = guess[2];
-		if ((0 <= x < 5) && (0 <= y < 5)) { inBounds = true; }
-		else {
-			cout << "Out of bounds! Guess again (x,y): ";
-		}
-	}
-	if (!processGuess(x, y)) { badGuesses++; };
-}
+void inputGuess();
 
 //Process the player's guess
-bool processGuess(int xCoord, int yCoord) {
-
-	return false;
-}
-
+bool processGuess(int xCoord, int yCoord);
 
 //Some function to allow the player to enter their ship location
-void enterShipLocation() {
-	//Hard coded ship for now
-	ocean[3][1] = true;
-	ocean[3][2] = true;
-	ocean[3][3] = true;
-	/*Ocean layout, ship is marked with X. 3 'tiles' in size for now
-		O O O O O
-		O O O X O
-		O O O X O
-		O O O X O
-		O O O O O
-	*/
-}
+void enterShipLocation();
+
+//Check if there is still a ship on the grid
+bool checkGrid();
+
+//Print dat grid
+void printGrid();
 
 int main(void) {
 	
@@ -101,21 +81,16 @@ int main(void) {
 	printName();
 
 	//Task 2
-	//first[0] = myName[0]; first[1] = myName[1]; first[2] = myName[2]; first[3] = myName[3]; first[4] = myName[4]; first[5] = myName[5];
-	//first[7] = myName[7]; first[8] = myName[8]; first[9] = myName[9]; first[10] = myName[10]; first[11] = myName[11];
 	addName();
-	printName();
+	printName(first, 6);
+	printName(last, 5);
 
 	//Task 3
 	enterShipLocation();
-
-	inputGuess();
-
-
-
-
-
-
+	while (shipAlive = checkGrid()) {
+		inputGuess();
+		printGrid();
+	 }
 
 	const int CONST_VALUE = 3;
 	float ave;
@@ -148,4 +123,82 @@ int main(void) {
 	delete[] sum;
 
 	return 0;
+}
+
+//Task 3 functions
+
+void inputGuess() {
+	bool inBounds = false;
+	int x, y;
+
+	cout << "Please enter an x and y value from 0 to 4!\n";
+	//Check to make sure they input the correct values
+	while (!inBounds) {
+		//promt the user to enter a location on the grid
+		cout << "x: ";
+		cin >> x;
+		cout << "y: ";
+		cin >> y;
+		if ((x < 5 && x >= 0) && (y < 5 && y >= 0)) {
+			inBounds = true;
+		}
+		else {
+			cout << "Please enter values inside the play field!\n";
+		}
+	}
+
+	//increment guesses and process the guess
+	guesses++;
+	if (!processGuess(x, y)) { misses++; };
+	cout << "Guesses: " << guesses << "! Hits: " << guesses - misses << endl;
+}
+
+bool processGuess(int xCoord, int yCoord) {
+	//Check if the guess is a hit
+	if (grid[xCoord][yCoord] == true) {
+		grid[xCoord][yCoord] = false;
+		cout << "Hit!\n";
+		return true;
+	}
+	else {
+		cout << "Miss!\n";
+		return false;
+	}
+}
+
+//Some function to allow the player to enter their ship location
+void enterShipLocation() {
+	//Hard coded ship for now
+	grid[3][1] = true;
+	grid[3][2] = true;
+	grid[3][3] = true;
+	/*Ocean layout, ship is marked with X. 3 'tiles' in size for now
+	O O O O O
+	O O O X O
+	O O O X O
+	O O O X O
+	O O O O O
+	*/
+}
+
+//Checks to see if there is still ships on the field
+bool checkGrid() {
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 5; j++) {
+			if (grid[i][j] == true) { return true; }
+		}
+	}
+	cout << "You win! It took a total of " << guesses << " gueses! With " << misses << " misses!";
+	return false;
+}
+
+//print where the ships are on the grid
+void printGrid() {
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 5; j++) {
+			if (grid[j][i] == true) { cout << "X "; }
+			else { cout << "O "; }
+		}
+		cout << endl;
+	}
 }
