@@ -20,7 +20,7 @@ float calc_avg(const int* arr, const int val);
 
 //Task 1
 int nameLen = 12;
-char myName[] = { 'S', 'a', 'm', 'u', 'e', 'l', ' ', 'B', 'o', 'w', 'e', 'n' };
+char myName[] = { 'S', 'a', 'm', 'u', 'e', 'l', ' ', 'B', 'o', 'w', 'e', 'n'};
 
 void printName() {
 	for (char& e : myName) {
@@ -29,10 +29,13 @@ void printName() {
 	cout << endl;
 }
 
-void printName(char name[], int len) {
+//char (&name)[5], pass the array by reference to a function
+
+void printName(char* name, int len) {
+
 	for (int i = 0; i < len; i++) {
 		cout << name[i];
-	}
+	}	
 	cout << endl;
 }
 
