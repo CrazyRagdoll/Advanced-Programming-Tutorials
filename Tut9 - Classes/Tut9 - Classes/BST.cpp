@@ -63,3 +63,7 @@ bool BST::find_value(node * tree, int val) {
 		}
 	}
 }
+
+node** BST::getRoot() {
+	return &root;
+}

@@ -32,21 +32,23 @@ int main(void) {
 	cout << "score = " << e2->get_score() << "\n";
 
 	//task 2
+	cout << endl << endl << "Task 2:" << endl;
 	Player* p1 = new Player(2, 0);
 	p1->set_name("sam");
 
 	cout << "player name = " << p1->get_name() << endl;
 
 	//Task 3;
+	cout << endl << endl << "Task 3:"<< endl;
 	for (int& e : vals) {
-		binarySearchTree->insert_integer(&binarySearchTree->root, e);
+		binarySearchTree->insert_integer(binarySearchTree->getRoot(), e);
 	}
 
-	//binarySearchTree->display_tree(binarySearchTree->root);
+	//binarySearchTree->display_tree(*binarySearchTree->getRoot());
 
-	binarySearchTree->print_tree(binarySearchTree->root);
+	binarySearchTree->print_tree(*binarySearchTree->getRoot());
 
-	if (binarySearchTree->find_value(binarySearchTree->root, 3)) { 
+	if (binarySearchTree->find_value(*binarySearchTree->getRoot(), 3)) {
 		cout << "\nThis number exists in the tree!";
 	}
 	else {
@@ -54,8 +56,8 @@ int main(void) {
 	};
 
 	//Task 4
-	cout << endl;
-	bShips->printGrid();
+	cout << endl << endl << "Task 4:" << endl;
+	//bShips->printGrid();
 	while (!bShips->checkScore()) {
 		bShips->inputGuess();
 	}

@@ -24,14 +24,8 @@ int inGrid(int root, int x) {
 }
 
 void Battleship::generateShips() {
-	////Hard coded ship for now
-	//grid[3][1] = true;
-	//grid[3][2] = true;
-	//grid[3][3] = true;
-
-	srand(time(NULL));
-
 	//Randomly generate ship position and orientation
+	srand(time(NULL));
 	int rootX, rootY, frontX, frontY, backX, backY, ori;
 	rootX = rand() % 5; rootY = rand() % 5;
 
@@ -40,10 +34,10 @@ void Battleship::generateShips() {
 
 	//depending on which number was generated decide which way to face the ship
 	switch (ori) {
-	case 0: frontX = inGrid(rootX, +1); frontY = rootY; backX = inGrid(rootX, -1); backY = rootY; break;
-	case 1: frontX = rootX; frontY = inGrid(rootY, +1); backX = rootX; backY = inGrid(rootY, -1); break;
-	case 2: frontX = inGrid(rootX, +1); frontY = inGrid(rootY, +1); backX = inGrid(rootX, -1); backY = inGrid(rootY, -1); break;
-	case 3: frontX = inGrid(rootX, -1); frontY = inGrid(rootY, +1); backX = inGrid(rootX, +1); backY = inGrid(rootY, -1); break;
+		case 0: frontX = inGrid(rootX, +1); frontY = rootY; backX = inGrid(rootX, -1); backY = rootY; break;
+		case 1: frontX = rootX; frontY = inGrid(rootY, +1); backX = rootX; backY = inGrid(rootY, -1); break;
+		case 2: frontX = inGrid(rootX, +1); frontY = inGrid(rootY, +1); backX = inGrid(rootX, -1); backY = inGrid(rootY, -1); break;
+		case 3: frontX = inGrid(rootX, -1); frontY = inGrid(rootY, +1); backX = inGrid(rootX, +1); backY = inGrid(rootY, -1); break;
 	}
 
 	//code in the new ship position
@@ -83,6 +77,7 @@ void Battleship::inputGuess() {
 bool Battleship::processGuess(int xCoord, int yCoord) {
 	//Check if the guess is a hit
 	if (grid[xCoord][yCoord] == true) {
+		//set the grid location to false (detroy that ship)
 		grid[xCoord][yCoord] = false;
 		cout << "Hit!\n";
 		return true;

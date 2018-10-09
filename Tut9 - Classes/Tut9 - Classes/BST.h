@@ -17,8 +17,9 @@ public:
 	void display_tree(node * tree);
 	bool find_value(node * tree, int val);
 
-	node* root;
+	node** getRoot();
+
 private:
-	//node* root;
+	node* root = new node;
 };
 
