@@ -7,6 +7,7 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "BST.h"
+#include "Battleship.h"
 
 using namespace std;
 
@@ -14,6 +15,9 @@ using namespace std;
 BST* binarySearchTree = new BST;
 
 int vals[5] = { 2,1,3,4,5 };
+
+//Task 4
+Battleship* bShips = new Battleship;
 
 int main(void) {
 
@@ -49,6 +53,13 @@ int main(void) {
 		cout << "\nCould not find number in tree!";
 	};
 
+	//Task 4
+	cout << endl;
+	bShips->printGrid();
+	while (!bShips->checkScore()) {
+		bShips->inputGuess();
+	}
+
 	
 	delete e2;
 	e2 = NULL;
@@ -56,6 +67,8 @@ int main(void) {
 	p1 = NULL;
 	delete binarySearchTree;
 	binarySearchTree = NULL;
+	delete bShips;
+	bShips = NULL;
 
 	int exit;
 	cout << "\nEnter number to exit: ";
