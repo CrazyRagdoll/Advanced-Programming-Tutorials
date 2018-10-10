@@ -28,3 +28,15 @@ void Enemy::set_hit_points(const int new_hit_points) {
 void Enemy::set_score(const int new_score) {
 	*score = new_score;
 }
+
+int Enemy::compare_to(const Comparable& rhs){
+	if (this > &rhs) {
+		return 1;
+	}
+	else if (this == &rhs) {
+		return 0;
+	}
+	else {
+		return -1;
+	}
+}

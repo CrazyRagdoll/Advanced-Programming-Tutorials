@@ -30,10 +30,11 @@ int main(void) {
 	allEnemies[10] = b;
 
 	for (int i = 0; i < 11; i++) {
+		allEnemies[i]->set_hit_points(allEnemies[i]->get_hit_points() - 1);
 		cout << "Enemy " << i << " hp: " << allEnemies[i]->get_hit_points() << endl;
 	}
 
-
+	//Task 5
 
 
 
@@ -52,6 +53,14 @@ int main(void) {
 	ae = NULL;
 	delete b;
 	b = NULL;
+	for (int i = 0; i < 10; i++) {
+		delete aeArray[i];
+		delete allEnemies[i];
+	}
+	delete allEnemies[10];
+	delete[] *aeArray;
+	delete[] *allEnemies;
+
 	return 0;
 }
 
