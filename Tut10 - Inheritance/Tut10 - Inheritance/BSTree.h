@@ -3,7 +3,7 @@
 #include "Boss.h"
 
 struct node {
-	Boss value;
+	Comparable *value;
 	node *left;
 	node *right;
 };
@@ -14,12 +14,13 @@ public:
 	BSTree();
 	~BSTree();
 
-	void insert_value(node** tree, Boss boss);
+	void insert_value(node** tree, Comparable *value);
 	void print_tree(node* tree);
 	void terminate_tree(node* tree);
 
+	node** getRoot();
 
 private:
-	node** root;
+	node* root = new node;
 };
 

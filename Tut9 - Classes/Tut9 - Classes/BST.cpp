@@ -29,7 +29,7 @@ void BST::insert_integer(node** tree, int val) {
 	}
 }
 
-void BST::print_tree(node * tree) {
+void BST::print_tree(node* tree) {
 	if (tree->left != NULL) {
 		print_tree(tree->left);
 	}
@@ -39,7 +39,7 @@ void BST::print_tree(node * tree) {
 	}
 }
 
-void BST::display_tree(node * tree) {
+void BST::display_tree(node* tree) {
 	int spaces = 0;
 	if (tree->left != NULL) {
 		display_tree(tree->left);
@@ -50,7 +50,7 @@ void BST::display_tree(node * tree) {
 	cout << tree->value;
 }
 
-bool BST::find_value(node * tree, int val) {
+bool BST::find_value(node* tree, int val) {
 	if (tree == NULL) { return false; }
 	if (tree->value == val) {
 		return true;
@@ -62,6 +62,17 @@ bool BST::find_value(node * tree, int val) {
 			find_value(tree->right, val);
 		}
 	}
+}
+
+void BST::terminate_tree(node* tree) {
+	//Parse through the whole tree deleteing everything
+	if (tree->left != NULL) {
+		terminate_tree(tree->left);
+	}
+	if (tree->right != NULL) {
+		terminate_tree(tree->right);
+	}
+	delete tree;
 }
 
 node** BST::getRoot() {

@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include "Boss.h"
+#include "BSTree.h"
 
 using namespace std;
 
@@ -35,8 +36,12 @@ int main(void) {
 	}
 
 	//Task 5
+	Boss* b2 = new Boss(5, 6, 11);
+	BSTree* tree = new BSTree;
+	tree->insert_value(tree->getRoot(), b);
+	tree->insert_value(tree->getRoot(), b2);
 
-
+	tree->print_tree(*tree->getRoot());
 
 	ArmedEnemy* ae = new ArmedEnemy(2, 5);
 	ae->set_hit_points(3);
