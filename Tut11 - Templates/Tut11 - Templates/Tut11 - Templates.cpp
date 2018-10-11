@@ -2,11 +2,49 @@
 //
 
 #include "stdafx.h"
+#include "Matrix.h"
+#include "BSTemplate.h"
 
+#include <iostream>
+
+using namespace std;
+
+BSTemplate<int>* BSTree = new BSTemplate<int>;
 
 int main()
 {
-    return 0;
+	MatrixInt m(3, 4);
+	m.set_element(2, 2, 8);
+	cout << "element at 2,2 is " << m.get_element(2, 2) << "\n";
+
+	Matrix<int> m_int;
+	m_int.set_element(1, 1, 4);
+	cout << "element at 1,1 is " << m_int.get_element(1, 1) << "\n";
+
+	Matrix<double> m_doub;
+	m_doub.set_element(2, 2, 8.421);
+	cout << "element at 2,2 is " << m_doub.get_element(2, 2) << "\n";
+
+	//Task 3
+	Matrix<char> m_char;
+	int count = 0;
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			m_char.set_element(j, i, char(97+count));
+			count++;
+		}
+	}
+	cout << "element at 2, 2 is " << m_char.get_element(1, 1) << endl;
+
+	//Task 4
+	BSTree->insert_node(BSTree->getRoot(), 10);
+	
+	BSTree->print_tree(*BSTree->getRoot());
+
+	int x = 0;
+	cin >> x;
+
+	return 0;
 }
 
 /*	Task 1

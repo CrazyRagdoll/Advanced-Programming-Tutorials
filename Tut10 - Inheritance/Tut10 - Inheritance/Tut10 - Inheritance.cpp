@@ -13,6 +13,12 @@ void some_function(Enemy& enemy) {
 	enemy.set_score(6);
 }
 
+//task 4
+void decrement_enemy_hp(Enemy& enemy) {
+	enemy.set_hit_points(enemy.get_hit_points() - 1);
+}
+
+
 int main(void) {
 
 	//Task 3
@@ -31,7 +37,7 @@ int main(void) {
 	allEnemies[10] = b;
 
 	for (int i = 0; i < 11; i++) {
-		allEnemies[i]->set_hit_points(allEnemies[i]->get_hit_points() - 1);
+		decrement_enemy_hp(*allEnemies[i]);
 		cout << "Enemy " << i << " hp: " << allEnemies[i]->get_hit_points() << endl;
 	}
 
