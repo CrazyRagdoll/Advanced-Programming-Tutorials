@@ -13,7 +13,7 @@ public:
 	bool empty();
 
 	//zzzz
-	void printElem(int i) { cout << "Element " << i << " is equal to " << items[i] << endl; };
+	void printElem(int i) {if(size!=0) cout << "Element " << i << " is equal to " << items[i] << endl; };
 
 protected:
 	int size;
@@ -25,45 +25,49 @@ protected:
 template <typename T>
 Stack<T>::Stack() :
 	size(0),
-	cap(100),
+	cap(4460),
 	items(new T[size]){
 }
 
 template <typename T>
 Stack<T>::~Stack() {
-	for (int i = 0; i < size; i++) {
-		delete items[i];
-		delete temp[i];
-	}
 	delete[] items;
-	delete[] temp;
+	items = nullptr;
 }
 
 template <typename T>
 void Stack<T>::Pop() {
-	if (size != 0) { 
-		T* temp = new T[size--];
-		for (int i = 0; i < size; i++) {
-			temp[i] = items[i];
+	if (size != 0) {
+		T* temp = new T[--size];
+		if (size + 1 > 0) {
+			for (int i = 0; i < size; i++) {
+				temp[i] = items[i + 1];
+			}
 		}
-		items = temp;
-		//delete[] temp;
+		delete[] items;
+		items = new T[size];
+		memcpy(items, temp, size * sizeof(int));
+		delete[] temp;
+		temp = nullptr;
+		if (size == 0) items = nullptr;
 	}
 }
 
 template <typename T>
 void Stack<T>::Push(T elem) {
 	if (size != cap) {
-		T* temp = new T[size+1];
-		if (size != 0) {
-			for (int i = 0; i < size; i++) {
-				temp[i] = items[i];
+		T* temp = new T[++size];
+		if (size-1 > 0) {
+			for (int i = 1; i <= size; i++) {
+				temp[i] = items[i-1];
 			}
 		}
-		temp[size] = elem;
-		items = temp;
-		size++;
-		//delete[] temp;
+		temp[0] = elem;
+		delete[] items;
+		items = new T[size];
+		memcpy(items, temp, size * sizeof(int));
+		delete[] temp;
+		temp = nullptr;
 	}
 }
 

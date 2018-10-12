@@ -47,14 +47,21 @@ int main()
 	//Task 5
 	intStack->Push(10);
 	intStack->Push(11);	
+	intStack->Push(100);
 
 	intStack->printElem(0);
 
-	cout << "Stack size: " << intStack->getSize() << endl;
+	cout << "stack size: " << intStack->getSize() << endl;
 
 	intStack->Pop();
 
-	cout << "Stack size: " << intStack->getSize() << endl;
+	intStack->printElem(0);
+	intStack->Pop();
+	intStack->printElem(0);
+	intStack->Pop();
+	intStack->printElem(0);
+
+	cout << "stack size: " << intStack->getSize() << endl;
 
 	int x = 0;
 	cin >> x;
