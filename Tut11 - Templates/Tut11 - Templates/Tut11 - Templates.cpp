@@ -4,12 +4,15 @@
 #include "stdafx.h"
 #include "Matrix.h"
 #include "BSTemplate.h"
+#include "Stack.h"
 
 #include <iostream>
 
 using namespace std;
 
 BSTemplate<int>* BSTree = new BSTemplate<int>;
+
+Stack<int>* intStack = new Stack<int>;
 
 int main()
 {
@@ -39,7 +42,19 @@ int main()
 	//Task 4
 	BSTree->insert_node(BSTree->getRoot(), 10);
 	
-	BSTree->print_tree(*BSTree->getRoot());
+	//BSTree->print_tree(*BSTree->getRoot());
+
+	//Task 5
+	intStack->Push(10);
+	intStack->Push(11);	
+
+	intStack->printElem(0);
+
+	cout << "Stack size: " << intStack->getSize() << endl;
+
+	intStack->Pop();
+
+	cout << "Stack size: " << intStack->getSize() << endl;
 
 	int x = 0;
 	cin >> x;
