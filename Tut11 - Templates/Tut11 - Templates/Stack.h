@@ -46,7 +46,7 @@ void Stack<T>::Pop() {
 		}
 		delete[] items;
 		items = new T[size];
-		memcpy(items, temp, size * sizeof(int));
+		memcpy(items, temp, size * sizeof(T));
 		delete[] temp;
 		temp = nullptr;
 		if (size == 0) items = nullptr;
@@ -65,7 +65,7 @@ void Stack<T>::Push(T elem) {
 		temp[0] = elem;
 		delete[] items;
 		items = new T[size];
-		memcpy(items, temp, size * sizeof(int));
+		memcpy(items, temp, size * sizeof(T));
 		delete[] temp;
 		temp = nullptr;
 	}

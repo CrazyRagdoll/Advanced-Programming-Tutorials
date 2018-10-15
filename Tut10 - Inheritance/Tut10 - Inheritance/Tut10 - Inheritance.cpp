@@ -49,6 +49,13 @@ int main(void) {
 
 	tree->print_tree(*tree->getRoot());
 
+	//Tutorial 12 - Task 1
+	ArmedEnemy* theBoy = new ArmedEnemy(2, 2);
+	cout << *theBoy;
+
+	delete theBoy;
+
+
 	ArmedEnemy* ae = new ArmedEnemy(2, 5);
 	ae->set_hit_points(3);
 	cout << "hit points = " << ae->get_hit_points() << "\n";

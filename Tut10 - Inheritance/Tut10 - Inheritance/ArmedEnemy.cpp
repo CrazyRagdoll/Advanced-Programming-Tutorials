@@ -30,3 +30,9 @@ void ArmedEnemy::shoot() {
 		cout << "out of ammo\n";
 	}
 }
+
+//Tutorial 12 task 1
+ostream& operator<<(ostream& ostr, const ArmedEnemy& enm) {
+	ostr << "Armed Enemy Reporting!\nI am worth " << enm.get_score() << " points! I have " << enm.get_hit_points() << " hit points & my ammo level is " << enm.ammo_level << "!\n";
+	return ostr;
+}
