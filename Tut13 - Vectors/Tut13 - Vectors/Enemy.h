@@ -1,5 +1,3 @@
-#ifndef _ENEMY_H_
-#define _ENEMY_H_
 #include <iostream>
 
 using std::cout;
@@ -17,22 +15,14 @@ public:
 	virtual void set_hit_points(int new_hit_points) { hit_points = new_hit_points; }
 	virtual	void set_score(int new_score) { *score = new_score; }
 
+	friend bool operator<(const Enemy& lhs, const Enemy& rhs) {
+		return lhs.hit_points < rhs.hit_points;
+	}
+	friend bool operator>(const Enemy& lhs, const Enemy& rhs) {
+		return lhs.hit_points > rhs.hit_points;
+	}
+
 protected:
 	int hit_points;
 	int* score;
 };
-
-class ArmedEnemy : public Enemy {
-public:
-	static const int default_ammo = 8;
-	ArmedEnemy() :Enemy(), ammo_level(default_ammo) {}
-	ArmedEnemy(int hps, int ammo) :Enemy(hps), ammo_level(ammo) {}
-	virtual ~ArmedEnemy() {}
-	virtual void set_score(const int new_score);
-	virtual void shoot();
-
-protected:
-	int ammo_level;
-};
-
-#endif
